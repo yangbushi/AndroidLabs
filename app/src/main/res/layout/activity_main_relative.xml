@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/lab2TextView"
+        android:text="@string/TextMessage"
+        android:textSize="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"/>
+    <Button
+        android:id="@+id/lab2Button"
+        android:layout_below="@+id/lab2TextView"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/Row2Botton" />
+    <ImageButton
+        android:id="@+id/lab2Image"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lab2TextView"
+        android:layout_toRightOf="@+id/lab2Button"
+        android:src="@drawable/flag"/>
+    <Switch
+        android:id="@+id/lab2Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lab2Image"
+        android:layout_alignParentRight="true"
+        android:text="@string/Lab2Switch" />
+    <CheckBox
+        android:id="@+id/lab2Check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lab2Image"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/lab2Switch"
+        android:text="@string/Lab2CheckBox" />
+    <EditText
+        android:layout_below="@+id/lab2Check"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/Lab2EditText"/>
+</RelativeLayout>

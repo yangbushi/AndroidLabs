@@ -3,4 +3,9 @@
     <string name="app_name">Android Labs</string>
     <string name="hello_message">你好世界!</string>
     <string name="ButtonText">I\'m a button</string>
+    <string name="TextMessage">我的物件在这里:</string>
+    <string name="Row2Botton">按钮</string>
+    <string name="Lab2CheckBox">点这里</string>
+    <string name="Lab2Switch">开关</string>
+    <string name="Lab2EditText">在这里回答</string>
 </resources>

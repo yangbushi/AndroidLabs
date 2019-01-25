@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Android Labs</string>
+    <string name="app_name">安卓实验</string>
     <string name="hello_message">你好世界!</string>
-    <string name="ButtonText">I\'m a button</string>
+    <string name="ButtonText">我是按钮</string>
     <string name="TextMessage">我的物件在这里:</string>
     <string name="Row2Botton">按钮</string>
     <string name="Lab2CheckBox">点这里</string>
     <string name="Lab2Switch">开关</string>
     <string name="Lab2EditText">在这里回答</string>
+    <string name="Lab3EmailText">输入电邮地址:</string>
+    <string name="Lab3EmailEdit">这里输入电邮</string>
+    <string name="Lab3PwdText">输入你的密码:</string>
+    <string name="Lab3LoginButton">登录</string>
+    <string name="Lab3ProfileText">你的信息</string>
+    <string name="Lab3NameText">你的名字:</string>
+    <string name="Lab3NameEdit">输入你的名字</string>
+    <string name="Lab3EmailText1">你的电邮:</string>
+    <string name="Lab3EmailEdit1">输入你的电邮</string>
+    <string name="Lab3PicText">你的照片:</string>
+    <string name="Lab3PicButton">点以上按钮拍照</string>
 </resources>

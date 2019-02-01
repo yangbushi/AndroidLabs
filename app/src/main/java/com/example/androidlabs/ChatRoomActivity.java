@@ -39,6 +39,12 @@ public class ChatRoomActivity extends AppCompatActivity {
         recvButton.setOnClickListener(v -> showNewMessage(adapter, false));
     }
 
+    /**
+     * add the typed message into the message array list
+     * and refresh the adapter
+     * @param adapter
+     * @param isSend
+     */
     private void showNewMessage(ListAdapter adapter, boolean isSend) {
         EditText chatEdit = (EditText)findViewById(R.id.lab4Edit);
         Message message = new Message(chatEdit.getText().toString(), isSend);
@@ -90,20 +96,20 @@ public class ChatRoomActivity extends AppCompatActivity {
             if(old == null)
                 root = inflater.inflate(R.layout.single_row, parent, false);
 
-            //Get the string to go in row: position
-            String toDisplay = getItem(position).toString();
+
             boolean isSend = ((Message)getItem(position)).isSend();
             ImageView chatImage = (ImageView)root.findViewById(R.id.lab4Image);
             TextView chatText = (TextView)root.findViewById(R.id.lab4ChatRow);
             chatText.setText(((Message)getItem(position)).getMessageText());
             if(isSend) {
+                // set the picture and layout for the icon and text
                 chatImage.setImageResource(R.drawable.row_send);
                 RelativeLayout.LayoutParams imageParams = (RelativeLayout.LayoutParams)chatImage.getLayoutParams();
                 imageParams.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
                 imageParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 chatImage.setLayoutParams(imageParams);
 
-
+                // set the layout for the text
                 RelativeLayout.LayoutParams textParams = (RelativeLayout.LayoutParams)chatText.getLayoutParams();
                 textParams.removeRule(RelativeLayout.RIGHT_OF);
                 textParams.addRule(RelativeLayout.LEFT_OF, R.id.lab4Image);

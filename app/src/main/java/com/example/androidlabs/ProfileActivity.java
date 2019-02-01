@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -19,6 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
     public static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageButton mImageButton;
+    private Button mChatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,12 @@ public class ProfileActivity extends AppCompatActivity {
                     }
 
             }
+        });
+
+        mChatButton = findViewById(R.id.lab4Chat);
+        mChatButton.setOnClickListener(v -> {
+            Intent startChatIntent = new Intent(this, ChatRoomActivity.class);
+            startActivity(startChatIntent);
         });
     }
 

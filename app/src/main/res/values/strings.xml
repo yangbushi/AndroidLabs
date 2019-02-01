@@ -3,10 +3,12 @@
     <string name="hello_message">Hello World!</string>
     <string name="ButtonText">I\'m a button</string>
     <string name="TextMessage">Here are my widgets:</string>
+
     <string name="Row2Botton">Button</string>
     <string name="Lab2CheckBox">Check this out!</string>
     <string name="Lab2Switch">Switch on \/ off</string>
     <string name="Lab2EditText">Type your answer in here</string>
+
     <string name="Lab3EmailText">Enter your email address:</string>
     <string name="Lab3EmailEdit">Type email here</string>
     <string name="Lab3PwdText">Type your password:</string>
@@ -18,4 +20,9 @@
     <string name="Lab3EmailEdit1">Enter your email</string>
     <string name="Lab3PicText">Your picture:</string>
     <string name="Lab3PicButton">Click the button above to take a picture</string>
+
+    <string name="Lab4Chat">Go to chat</string>
+    <string name="Lab4Send">SEND</string>
+    <string name="Lab4Recv">RECEIVE</string>
+    <string name="Lab4ChatHint">Type here</string>
 </resources>

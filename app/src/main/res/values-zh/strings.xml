@@ -4,10 +4,12 @@
     <string name="hello_message">你好世界!</string>
     <string name="ButtonText">我是按钮</string>
     <string name="TextMessage">我的物件在这里:</string>
+
     <string name="Row2Botton">按钮</string>
     <string name="Lab2CheckBox">点这里</string>
     <string name="Lab2Switch">开关</string>
     <string name="Lab2EditText">在这里回答</string>
+
     <string name="Lab3EmailText">输入电邮地址:</string>
     <string name="Lab3EmailEdit">这里输入电邮</string>
     <string name="Lab3PwdText">输入你的密码:</string>
@@ -19,4 +21,9 @@
     <string name="Lab3EmailEdit1">输入你的电邮</string>
     <string name="Lab3PicText">你的照片:</string>
     <string name="Lab3PicButton">点以上按钮拍照</string>
+
+    <string name="Lab4Chat">开始聊天</string>
+    <string name="Lab4Send">发送</string>
+    <string name="Lab4Recv">接收</string>
+    <string name="Lab4ChatHint">这里输入</string>
 </resources>

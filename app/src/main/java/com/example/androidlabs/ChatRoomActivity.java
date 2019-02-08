@@ -1,7 +1,12 @@
 package com.example.androidlabs;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,26 +33,70 @@ public class ChatRoomActivity extends AppCompatActivity {
         messages = new ArrayList<>();
         setContentView(R.layout.activity_chat_room);
 
+        //get a database:
+        MyDatabaseOpenHelper dbOpener = new MyDatabaseOpenHelper(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        loadMessagesFromDB(db);
+
+        // set the adapter for the listView
         ListAdapter adapter = new MyArrayAdapter<Message>(messages);
         ListView chatList = (ListView)findViewById(R.id.lab4ChatList);
         chatList.setAdapter(adapter);
 
         Button sendButton = (Button)findViewById(R.id.lab4Send);
-        sendButton.setOnClickListener(v -> showNewMessage(adapter, true));
+        sendButton.setOnClickListener(v -> showNewMessage(adapter, true, db));
 
         Button recvButton = (Button)findViewById(R.id.lab4Receive);
-        recvButton.setOnClickListener(v -> showNewMessage(adapter, false));
+        recvButton.setOnClickListener(v -> showNewMessage(adapter, false, db));
     }
 
     /**
-     * add the typed message into the message array list
+     * load messages from database
+     * copy mostly from professor's week5
+     */
+    private void loadMessagesFromDB(SQLiteDatabase db) {
+        //query all the results from the database:
+        String [] columns = {MyDatabaseOpenHelper.COL_ID, MyDatabaseOpenHelper.COL_TEXT, MyDatabaseOpenHelper.COL_IS_SEND};
+        Cursor results = db.query(false, MyDatabaseOpenHelper.TABLE_NAME, columns, null, null, null, null, null, null);
+        printCursor(results);
+
+        //find the column indices:
+        int isSendColumnIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_IS_SEND);
+        int textColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_TEXT);
+        int idColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
+
+        //iterate over the results, return true if there is a next item:
+        while(results.moveToNext())
+        {
+            String text = results.getString(textColIndex);
+            boolean isSend = results.getInt(isSendColumnIndex)==1? true: false;
+            long id = results.getLong(idColIndex);
+
+            //add the new message to the array list:
+            messages.add(new Message(id, text, isSend));
+        }
+    }
+
+    /**
+     * add the typed message into the database and message array list
      * and refresh the adapter
      * @param adapter
      * @param isSend
      */
-    private void showNewMessage(ListAdapter adapter, boolean isSend) {
+    private void showNewMessage(ListAdapter adapter, boolean isSend, SQLiteDatabase db) {
         EditText chatEdit = (EditText)findViewById(R.id.lab4Edit);
-        Message message = new Message(chatEdit.getText().toString(), isSend);
+        String text = chatEdit.getText().toString();
+
+        //add to the database and get the new ID
+        ContentValues newRowValues = new ContentValues();
+        newRowValues.put(MyDatabaseOpenHelper.COL_TEXT, text);
+        newRowValues.put(MyDatabaseOpenHelper.COL_IS_SEND, isSend? 1: 0);
+        //insert in the database:
+        long newId = db.insert(MyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
+
+        //now you have the newId, you can create the message object
+        Message message = new Message(newId, text, isSend);
+        //add the new message to the list:
         messages.add(message);
         ((MyArrayAdapter) adapter).notifyDataSetChanged();
         chatEdit.setText("");
@@ -140,5 +189,25 @@ public class ChatRoomActivity extends AppCompatActivity {
         {
             return 0;
         }
+
+
+    }
+    /**
+     * print the following information to the Log window after you run your query:
+     *
+     * •	The database version number
+     * •	The number of columns in the cursor.
+     * •	The name of the columns in the cursor.
+     * •	The number of results in the cursor
+     * •	Each row of results in the cursor.
+     * @param c
+     */
+    public void printCursor( Cursor c) {
+        Log.i("PrintCursor", "Database version: " + MyDatabaseOpenHelper.VERSION_NUM);
+        Log.i("PrintCursor", "Number of columns: " + c.getColumnCount());
+        for(int i = 0; i < c.getColumnCount(); i++)
+            Log.i("PrintCursor", "Name of the columns: " + c.getColumnNames()[i]);
+        Log.i("PrintCursor", "Number of results: " + c.getCount());
+        Log.i("PrintCursor", "Each row of results: " + DatabaseUtils.dumpCursorToString(c));
     }
 }

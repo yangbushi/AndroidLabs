@@ -25,4 +25,12 @@
     <string name="Lab4Send">SEND</string>
     <string name="Lab4Recv">RECEIVE</string>
     <string name="Lab4ChatHint">Type here</string>
+
+    <string name="Lab6ToolBarButton">Test tool bar</string>
+    <string name="Lab6Item1">3 star</string>
+    <string name="Lab6Item2">4 star</string>
+    <string name="Lab6Item3">5 star</string>
+    <string name="Lab6Item4">toast</string>
+    <string name="Lab6DialogText">What is your new message?</string>
+    <string name="Lab6DialogEdit">Type here</string>
 </resources>

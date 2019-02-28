@@ -26,4 +26,12 @@
     <string name="Lab4Send">发送</string>
     <string name="Lab4Recv">接收</string>
     <string name="Lab4ChatHint">这里输入</string>
+
+    <string name="Lab6ToolBarButton">测试工具条</string>
+    <string name="Lab6Item1">3 星</string>
+    <string name="Lab6Item2">4 星</string>
+    <string name="Lab6Item3">5 星</string>
+    <string name="Lab6Item4">致辞</string>
+    <string name="Lab6DialogText">新消息是什么?</string>
+    <string name="Lab6DialogEdit">在这里输入</string>
 </resources>

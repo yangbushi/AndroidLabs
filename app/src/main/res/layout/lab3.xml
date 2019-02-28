@@ -30,8 +30,14 @@
         android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/lab3LoginButton"
+    android:id="@+id/lab3LoginButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/Lab3LoginButton"/>
+
+    <Button
+        android:id="@+id/lab6ToolBarButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Lab3LoginButton"/>
+        android:text="@string/Lab6ToolBarButton"/>
 </LinearLayout>

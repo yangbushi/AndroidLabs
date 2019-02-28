@@ -33,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
             startProfileIntent.putExtra("emailAddress", emailEdit.getText().toString());
             startActivity(startProfileIntent);
         });
+
+        Button mToolButton = (Button) findViewById(R.id.lab6ToolBarButton);
+        mToolButton.setOnClickListener(v->{
+            Intent startToolBarIntent = new Intent(this, TestToolbar.class);
+            startActivity(startToolBarIntent);
+        });
     }
 
     @Override

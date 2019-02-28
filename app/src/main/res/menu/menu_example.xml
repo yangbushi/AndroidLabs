@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/item1"
         android:title="@string/Lab6Item1"
-        android:icon="@drawable/3star"
+        android:icon="@drawable/star3"
         android:orderInCategory="100"
         app:showAsAction="always"/>
 
 
     <item android:id="@+id/item2"
         android:title="@string/Lab6Item2"
-        android:icon="@drawable/4star"
+        android:icon="@drawable/star4"
         android:orderInCategory="200"
         app:showAsAction="always"/>
 
     <item android:id="@+id/item3"
         android:title="@string/Lab6Item3"
-        android:icon="@drawable/5star"
+        android:icon="@drawable/star5"
         android:orderInCategory="300"
         app:showAsAction="always"/>
 

@@ -1,6 +1,7 @@
 package com.example.androidlabs;
 
 import android.content.DialogInterface;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,11 +42,15 @@ public class TestToolbar extends AppCompatActivity {
                 Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
                 break;
             case R.id.item2:
+                alertExample();
                 break;
             case R.id.item3:
+                Snackbar sb = Snackbar.make((Toolbar)findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG)
+                        .setAction("Yes", e -> finish());
+                sb.show();
                 break;
             case R.id.item4:
-                Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "You clicked on the overflow menu", Toast.LENGTH_LONG).show();
                 break;
         }
 
@@ -54,16 +59,14 @@ public class TestToolbar extends AppCompatActivity {
 
     public void alertExample()
     {
-        View middle = getLayoutInflater().inflate(R.layout.view_extra_stuff, null);
-        Button btn = (Button)middle.findViewById(R.id.view_button);
-        EditText et = (EditText)middle.findViewById(R.id.view_edit_text);
-        btn.setOnClickListener( clk -> et.setText("You clicked my button!"));
+        View middle = getLayoutInflater().inflate(R.layout.dialog_box, null);
+        EditText et = (EditText)middle.findViewById(R.id.lab6_edit);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("The Message")
+        builder.setMessage("")
                 .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // What to do on Accept
+                        toastMessage = et.getText().toString();
                     }
                 })
                 .setNegativeButton("Negative", new DialogInterface.OnClickListener() {

@@ -15,22 +15,26 @@
     <TextView
         android:id="@+id/lab7CurTemp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="25dp"/>
 
     <TextView
         android:id="@+id/lab7MinTemp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="25dp"/>
 
     <TextView
         android:id="@+id/lab7MaxTemp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="25dp"/>
 
     <TextView
         android:id="@+id/lab7UV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="25dp"/>
 
     <ProgressBar
         android:layout_width="match_parent"

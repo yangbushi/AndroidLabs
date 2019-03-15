@@ -34,4 +34,6 @@
     <string name="Lab6Item4">致辞</string>
     <string name="Lab6DialogText">新消息是什么?</string>
     <string name="Lab6DialogEdit">在这里输入</string>
+
+    <string name="lab7Weather">天气预报</string>
 </resources>

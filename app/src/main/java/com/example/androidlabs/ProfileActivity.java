@@ -21,6 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageButton mImageButton;
     private Button mChatButton;
+    private Button mWeatherButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,12 @@ public class ProfileActivity extends AppCompatActivity {
         mChatButton.setOnClickListener(v -> {
             Intent startChatIntent = new Intent(this, ChatRoomActivity.class);
             startActivity(startChatIntent);
+        });
+
+        mWeatherButton = findViewById(R.id.lab7Weather);
+        mWeatherButton.setOnClickListener(v -> {
+            Intent startWeatherIntent = new Intent(this, WeatherForecast.class);
+            startActivity(startWeatherIntent);
         });
     }
 

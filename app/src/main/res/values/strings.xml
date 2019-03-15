@@ -33,4 +33,6 @@
     <string name="Lab6Item4">toast</string>
     <string name="Lab6DialogText">What is your new message?</string>
     <string name="Lab6DialogEdit">Type here</string>
+
+    <string name="lab7Weather">WeatherForecast</string>
 </resources>

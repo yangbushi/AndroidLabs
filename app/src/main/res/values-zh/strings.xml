@@ -36,4 +36,6 @@
     <string name="Lab6DialogEdit">在这里输入</string>
 
     <string name="lab7Weather">天气预报</string>
+
+    <string name="Lab8Delete">删除消息</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.androidlabs;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,6 +26,15 @@ import java.util.List;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
+    public static final String MSG_ID = "ID";
+    public static final String MSG_TEXT = "TEXT";
+    public static final String MSG_IS_SEND = "IS_SEND";
+    public static final int CHAT_MSG_ACTIVITY = 345;
+
+    MyDatabaseOpenHelper dbOpener;
+    SQLiteDatabase db;
+
+    MyArrayAdapter<Message> adapter;
     private List<Message> messages;
 
     @Override
@@ -34,14 +44,42 @@ public class ChatRoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
         //get a database:
-        MyDatabaseOpenHelper dbOpener = new MyDatabaseOpenHelper(this);
-        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        dbOpener = new MyDatabaseOpenHelper(this);
+        db = dbOpener.getWritableDatabase();
         loadMessagesFromDB(db);
 
+        boolean isTablet = findViewById(R.id.lab8FragLocation) != null;
+
         // set the adapter for the listView
-        ListAdapter adapter = new MyArrayAdapter<Message>(messages);
+        adapter = new MyArrayAdapter<Message>(messages);
         ListView chatList = (ListView)findViewById(R.id.lab4ChatList);
         chatList.setAdapter(adapter);
+
+        chatList.setOnItemClickListener((list, item, position, id) -> { // refer to prof's week8
+            Bundle dataToPass = new Bundle();
+            Message message = messages.get(position);
+            dataToPass.putBoolean(MSG_IS_SEND, message.isSend() );
+            dataToPass.putString(MSG_TEXT, message.getMessageText());
+            dataToPass.putLong(MSG_ID, id);
+
+            if(isTablet)
+            {
+                DetailFragment dFragment = new DetailFragment(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.lab8FragLocation, dFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(ChatRoomActivity.this, ChatMessageActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivityForResult(nextActivity, CHAT_MSG_ACTIVITY); //make the transition
+            }
+        });
 
         Button sendButton = (Button)findViewById(R.id.lab4Send);
         sendButton.setOnClickListener(v -> showNewMessage(adapter, true, db));
@@ -187,7 +225,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         //Return 0 for now. We will change this when using databases
         public long getItemId(int position)
         {
-            return 0;
+            return ((Message)getItem(position)).getId();
         }
 
 
@@ -209,5 +247,35 @@ public class ChatRoomActivity extends AppCompatActivity {
             Log.i("PrintCursor", "Name of the columns: " + c.getColumnNames()[i]);
         Log.i("PrintCursor", "Number of results: " + c.getCount());
         Log.i("PrintCursor", "Each row of results: " + DatabaseUtils.dumpCursorToString(c));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == CHAT_MSG_ACTIVITY)
+        {
+            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                long id = data.getLongExtra(MSG_ID, 0);
+                deleteMessageId((int)id);
+            }
+        }
+    }
+
+    public void deleteMessageId(int id)
+    {
+        Log.i("Delete this message:" , " id="+id);
+
+        // delete the message from database
+        db.delete(MyDatabaseOpenHelper.TABLE_NAME, MyDatabaseOpenHelper.COL_ID + "= ?", new String[] {Long.toString(id)});
+
+        // delete the message from adapter
+        for(Message message: messages) {
+            if(message.getId() == id) {
+                messages.remove(message);
+                break;
+            }
+        }
+
+        adapter.notifyDataSetChanged();
     }
 }

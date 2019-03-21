@@ -35,4 +35,6 @@
     <string name="Lab6DialogEdit">Type here</string>
 
     <string name="lab7Weather">WeatherForecast</string>
+
+    <string name="Lab8Delete">delete this message</string>
 </resources>
